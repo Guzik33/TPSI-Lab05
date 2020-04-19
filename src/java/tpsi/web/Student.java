@@ -10,6 +10,12 @@ public class Student  {
     String lastName;
     String email;
     
+    Student(String firstName, String lastName, String email)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email=email;
+    }
     
     public String getFirstName()
     {
