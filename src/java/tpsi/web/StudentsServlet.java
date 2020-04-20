@@ -17,14 +17,21 @@ import java.util.ArrayList;
 @WebServlet(name = "StudentsServlet", urlPatterns = {"/students"})
 public class StudentsServlet extends HttpServlet {
     
-    List<Student> listOfStudentsLocal = new ArrayList<>(); //Inicjalizuje lokalna liste studentow
+    //List<Student> listOfStudentsLocal = new ArrayList<>(); //Inicjalizuje lokalna liste studentow
+    List <Student> listOfStudentsLocal;
     
     
     
      protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          
+         
          HttpSession session = request.getSession();
+         
+         if (session.getAttribute("listOfStudentsSession") !=null) listOfStudentsLocal = (List<Student>) session.getAttribute("listOfStudentsSession");
+         else listOfStudentsLocal = new ArrayList<>();
+
+         
          listOfStudentsLocal.add(new Student(request.getParameter("firstName"), request.getParameter("lastName"),request.getParameter("email")));
          session.setAttribute("listOfStudentsSession",listOfStudentsLocal);
          request.setAttribute("studenci", session.getAttribute("listOfStudentsSession")); //Liste studentow wrzucam do parametru "studenci" do .jsp
@@ -34,6 +41,8 @@ public class StudentsServlet extends HttpServlet {
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
              throws ServletException, IOException{
          HttpSession session = request.getSession();
+         if (session.getAttribute("listOfStudentsSession") !=null) listOfStudentsLocal = (List<Student>) session.getAttribute("listOfStudentsSession");
+         else listOfStudentsLocal = new ArrayList<>();
          request.setAttribute("studenci", session.getAttribute("listOfStudentsSession")); //Liste studentow wrzucam do parametru "studenci" do .jsp
          request.getRequestDispatcher("hello.jsp").forward(request, response);
                 
