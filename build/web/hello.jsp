@@ -8,8 +8,6 @@
     </head>
     <body>
         <h1>Witamy w JSP!</h1>
-        Licznik odwiedzin: ${licznik}
-        <br><br>
         
         
         <table border =\"1\" align = \"center\"> 

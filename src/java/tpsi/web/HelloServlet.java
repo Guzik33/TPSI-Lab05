@@ -34,8 +34,11 @@ public class HelloServlet extends HttpServlet {
         counter++;
         session.setAttribute("counter", counter);
         request.setAttribute("licznik", session.getAttribute("counter"));
-        request.getRequestDispatcher("hello.jsp").forward(request, response);
+        request.getRequestDispatcher("counter.jsp").forward(request, response);
     }
+    
+    
+    
         //-----------------------------------------------
         
         

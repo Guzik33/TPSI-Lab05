@@ -18,14 +18,14 @@ import java.util.ArrayList;
 public class StudentsServlet extends HttpServlet {
     
     //List<Student> listOfStudentsLocal = new ArrayList<>(); //Inicjalizuje lokalna liste studentow
-    List <Student> listOfStudentsLocal;
+    
     
     
     
      protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          
-         
+         List <Student> listOfStudentsLocal;
          HttpSession session = request.getSession();
          
          if (session.getAttribute("listOfStudentsSession") !=null) listOfStudentsLocal = (List<Student>) session.getAttribute("listOfStudentsSession");
@@ -40,6 +40,7 @@ public class StudentsServlet extends HttpServlet {
      
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
              throws ServletException, IOException{
+         List <Student> listOfStudentsLocal;
          HttpSession session = request.getSession();
          if (session.getAttribute("listOfStudentsSession") !=null) listOfStudentsLocal = (List<Student>) session.getAttribute("listOfStudentsSession");
          else listOfStudentsLocal = new ArrayList<>();
